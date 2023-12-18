@@ -15,14 +15,14 @@ import javax.swing.Timer;
 
 public class yilanVeCerceve extends JLabel {
     kutu bas = new kutu();
-    
+    Timer timer4 = null;
     
     public yilanVeCerceve(){
         
         addKeyListener(new klavyeKontrol());
         
         setFocusable(true);
-        Timer timer4 = new Timer(100,new surekliHareketKontrol());
+        timer4 = new Timer(100,new surekliHareketKontrol());
         timer4.start();
         
         add(bas);
@@ -52,31 +52,36 @@ public class yilanVeCerceve extends JLabel {
         @Override
         public void keyPressed(KeyEvent e) {
             
-            if(e.getKeyCode() == KeyEvent.VK_W){
-                System.out.println("W basildi !");
-                if(bas.KYON != YON.ASAGI)
-                bas.KYON = YON.YUKARI;
-            }
-            
-            if(e.getKeyCode() == KeyEvent.VK_S){
-                System.out.println("S basildi !");
-                if(bas.KYON != YON.YUKARI)
-                bas.KYON = YON.ASAGI;
-            }
-            
-            if(e.getKeyCode() == KeyEvent.VK_A){
-                System.out.println("A basildi !");
-                if(bas.KYON != YON.SAG)
-                bas.KYON = YON.SOL;
-            }
-            
-            if(e.getKeyCode() == KeyEvent.VK_D){
-                System.out.println("D basildi !");
-                if(bas.KYON != YON.SOL)
-                bas.KYON = YON.SAG;
-                    
+           if(e.getKeyCode() == KeyEvent.VK_W){
+              // bas.yukari();
+              if(bas.KYON != YON.ASAGI){
+                  bas.KYON = YON.YUKARI;
+              }
+           }
+           if(e.getKeyCode() == KeyEvent.VK_S){
+              // bas.asagi();
+              
+              if(bas.KYON != YON.YUKARI){
+                  bas.KYON = YON.ASAGI;
+              }
+           
+           }
+           if(e.getKeyCode() == KeyEvent.VK_D){
+               //bas.sag();
+               
+               if(bas.KYON != YON.SOL){
+                   bas.KYON = YON.SAG;
                }
-            
+           
+           }
+           if(e.getKeyCode() == KeyEvent.VK_A){
+               //bas.sol();
+               
+               if(bas.KYON != YON.SAG){
+                   bas.KYON = YON.SOL;
+               }
+               
+           }
             
 
         }
@@ -86,6 +91,25 @@ public class yilanVeCerceve extends JLabel {
         }
     }
     
+    public boolean carpismaVarMi(){
+        
+        if(bas.getX() <= 10){
+            return true;
+        }
+        else if(bas.getX() >= 560){
+            return true;
+        }
+        else if(bas.getY() <= 10){
+            return true;
+        }
+        else if(bas.getY() >= 540){
+            return true;
+        }
+        
+        
+        return false;
+    }
+    
     public class surekliHareketKontrol implements ActionListener{
 
         @Override //hep saga gidiyor bunu engellemek icin yon tayini yapacagiz
@@ -93,7 +117,13 @@ public class yilanVeCerceve extends JLabel {
         //bas.sag();
         
         bas.YoneGoreHareket();
+        if(carpismaVarMi()){
+            System.out.println("carpisma oldu !");
+            timer4.stop();
         }
+        
+        }
+        
     }
     
 }
