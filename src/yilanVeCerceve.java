@@ -35,7 +35,7 @@ public class yilanVeCerceve extends JLabel {
         //ekranda gorelim
         yilanParcalari.add(bas);
         
-        for(int i = 1 ; i < 10 ; i++){
+        for(int i = 0 ; i < 10 ; i++){
                                             
             kuyrukOlustur();
         }
@@ -135,17 +135,20 @@ public class yilanVeCerceve extends JLabel {
     }
     
     public void hepsiniYurut(){
-       
-        for(int i = yilanParcalari.size() -1 ; i > 0 ; i--){
+       for(int i =  yilanParcalari.size() -1 ; i > 0 ;i--){
             
-            kutu next = yilanParcalari.get(i);
             kutu prev = yilanParcalari.get(i-1);
+            kutu next = yilanParcalari.get(i);
+            
+//            next.kyon = prev.kyon;
+            
             
             yilanParcalari.get(i).YoneGoreHareket();
-            
             next.KYON = prev.KYON;
-            
+
         }
+        //i = 1 oldugundan en bastaki hareket etmez
+        //donguyu ters ceviririz
         bas.YoneGoreHareket();
     }
     
