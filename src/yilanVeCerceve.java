@@ -136,7 +136,7 @@ public class yilanVeCerceve extends JLabel {
     
     public void hepsiniYurut(){
        
-        for(int i = yilanParcalari.size() -1 ; i > 0 ; i++){
+        for(int i = yilanParcalari.size() -1 ; i > 0 ; i--){
             
             kutu next = yilanParcalari.get(i);
             kutu prev = yilanParcalari.get(i-1);
@@ -155,7 +155,8 @@ public class yilanVeCerceve extends JLabel {
         public void actionPerformed(ActionEvent e) {
         //bas.sag();
         
-        bas.YoneGoreHareket();
+        //bas.YoneGoreHareket();
+        hepsiniYurut();
         if(carpismaVarMi()){
             System.out.println("carpisma oldu !");
             timer4.stop();
