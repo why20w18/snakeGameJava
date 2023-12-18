@@ -3,20 +3,28 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 
 
 public class yilanVeCerceve extends JLabel {
     kutu bas = new kutu();
     
+    
     public yilanVeCerceve(){
         
         addKeyListener(new klavyeKontrol());
+        
         setFocusable(true);
+        Timer timer4 = new Timer(100,new surekliHareketKontrol());
+        timer4.start();
+        
         add(bas);
     }
     
@@ -70,11 +78,15 @@ public class yilanVeCerceve extends JLabel {
         @Override
         public void keyReleased(KeyEvent e) {
         }
-        
-        
-        
-        
     }
     
+    public class surekliHareketKontrol implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        bas.sag();
+
+        }
+    }
     
 }
