@@ -46,48 +46,22 @@ public class yilanVeCerceve extends JLabel {
             
             if(e.getKeyCode() == KeyEvent.VK_W){
                 System.out.println("W basildi !");
-                
-                int posX = bas.getX(); //bulundugu konumu aliyorum
-                int posY = bas.getY();
-                
-                //w yukari gidecek yani - olacak
-                
-                posY = posY - bas.getWidth();
-                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
-                
+                bas.yukari();
             }
             
             if(e.getKeyCode() == KeyEvent.VK_S){
                 System.out.println("S basildi !");
-                
-                int posX = bas.getX();
-                int posY = bas.getY();
-                
-                posY = posY + bas.getWidth();
-                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
+                bas.asagi();
             }
             
             if(e.getKeyCode() == KeyEvent.VK_A){
                 System.out.println("A basildi !");
-                
-                int posX = bas.getX();
-                int posY = bas.getY();
-                
-                posX = posX - bas.getWidth();
-                
-                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
-                
+                bas.sol();
             }
             
             if(e.getKeyCode() == KeyEvent.VK_D){
                 System.out.println("D basildi !");
-                
-                int posX = bas.getX();
-                int posY = bas.getY();
-                
-                posX = posX + bas.getWidth();
-                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
-                
+                bas.sag();
             }
             
 
