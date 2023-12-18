@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
@@ -16,6 +17,8 @@ import javax.swing.Timer;
 public class yilanVeCerceve extends JLabel {
     kutu bas = new kutu();
     Timer timer4 = null;
+    ArrayList<kutu> yilanParcalari = new ArrayList<kutu>();
+
     
     public yilanVeCerceve(){
         
@@ -25,7 +28,28 @@ public class yilanVeCerceve extends JLabel {
         timer4 = new Timer(100,new surekliHareketKontrol());
         timer4.start();
         
+        
+        //ilk atilacak parca yilanin basi
+        //arraylistin sonuna gidip kutu olusturulabilir
+        //yeni olusan kutu hem yilanParcalari arraylistine eklenmeli hemde komponent olarak eklenmeli ki biz
+        //ekranda gorelim
+        yilanParcalari.add(bas);
+        
+        for(int i = 1 ; i < 10 ; i++){
+                                            
+            kuyrukOlustur();
+        }
+        
+        
         add(bas);
+    }
+    
+    public void kuyrukOlustur(){
+        
+        kutu yeniKutu = yilanParcalari.get(yilanParcalari.size()-1).kutuOlustur();
+        yilanParcalari.add(yeniKutu);
+        add(yeniKutu);
+        
     }
     
     @Override
@@ -108,6 +132,21 @@ public class yilanVeCerceve extends JLabel {
         
         
         return false;
+    }
+    
+    public void hepsiniYurut(){
+       
+        for(int i = yilanParcalari.size() -1 ; i > 0 ; i++){
+            
+            kutu next = yilanParcalari.get(i);
+            kutu prev = yilanParcalari.get(i-1);
+            
+            yilanParcalari.get(i).YoneGoreHareket();
+            
+            next.KYON = prev.KYON;
+            
+        }
+        bas.YoneGoreHareket();
     }
     
     public class surekliHareketKontrol implements ActionListener{
