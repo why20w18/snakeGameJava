@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
@@ -14,7 +15,7 @@ public class ekran extends JFrame{
         setTitle("Yýlan Oyunu | Sürüm 1");
         ekranOrtala(eGenislik, eYukseklik);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    
+        setResizable(false);
         yilanVeCerceve cerceve = new yilanVeCerceve();
         add(cerceve);
         
