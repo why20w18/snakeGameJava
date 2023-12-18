@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
@@ -16,8 +17,12 @@ import javax.swing.Timer;
 
 public class yilanVeCerceve extends JLabel {
     kutu bas = new kutu();
+    yem yem = new yem();
+    
     Timer timer4 = null;
     ArrayList<kutu> yilanParcalari = new ArrayList<kutu>();
+    
+    Random rand = new Random();
 
     
     public yilanVeCerceve(){
@@ -35,12 +40,12 @@ public class yilanVeCerceve extends JLabel {
         //ekranda gorelim
         yilanParcalari.add(bas);
         
-        for(int i = 0 ; i < 10 ; i++){
+        for(int i = 0 ; i < 5 ; i++){
                                             
             kuyrukOlustur();
         }
         
-        
+        add(yem);
         add(bas);
     }
     
@@ -130,8 +135,29 @@ public class yilanVeCerceve extends JLabel {
             return true;
         }
         
+         if(yem.getX() == bas.getX() && yem.getY() == bas.getY()){
+            
+           kuyrukOlustur();
+           yemEkle();
+        }
+        
         
         return false;
+    }
+    
+    public void yemEkle(){
+        
+        int width = getWidth()-20-yem.yemHeight;
+        int height = getHeight()-20-yem.yemHeight;
+        
+        int posX = Math.abs(rand.nextInt()) % width;
+        int posY = Math.abs(rand.nextInt()) % height;
+        
+        posX = posX - posX%20;
+        posY = posY - posY%20;
+        
+        yem.setBounds(posX, posY, 20, 20);
+            
     }
     
     public void hepsiniYurut(){
