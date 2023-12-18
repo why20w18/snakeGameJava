@@ -15,6 +15,7 @@ public class yilanVeCerceve extends JLabel {
     
     public yilanVeCerceve(){
         
+        addKeyListener(new klavyeKontrol());
         add(bas);
     }
     
@@ -45,6 +46,13 @@ public class yilanVeCerceve extends JLabel {
             if(e.getKeyCode() == KeyEvent.VK_W){
                 System.out.println("W basildi !");
                 
+                int posX = bas.getX(); //bulundugu konumu aliyorum
+                int posY = bas.getY();
+                
+                //w yukari gidecek yani - olacak
+                
+                posY = posY - bas.getWidth();
+                setBounds(posX, posY, bas.getWidth(), bas.getWidth());
                 
             }
 
