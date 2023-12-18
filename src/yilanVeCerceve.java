@@ -16,6 +16,7 @@ public class yilanVeCerceve extends JLabel {
     public yilanVeCerceve(){
         
         addKeyListener(new klavyeKontrol());
+        setFocusable(true);
         add(bas);
     }
     
@@ -52,9 +53,43 @@ public class yilanVeCerceve extends JLabel {
                 //w yukari gidecek yani - olacak
                 
                 posY = posY - bas.getWidth();
-                setBounds(posX, posY, bas.getWidth(), bas.getWidth());
+                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
                 
             }
+            
+            if(e.getKeyCode() == KeyEvent.VK_S){
+                System.out.println("S basildi !");
+                
+                int posX = bas.getX();
+                int posY = bas.getY();
+                
+                posY = posY + bas.getWidth();
+                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
+            }
+            
+            if(e.getKeyCode() == KeyEvent.VK_A){
+                System.out.println("A basildi !");
+                
+                int posX = bas.getX();
+                int posY = bas.getY();
+                
+                posX = posX - bas.getWidth();
+                
+                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
+                
+            }
+            
+            if(e.getKeyCode() == KeyEvent.VK_D){
+                System.out.println("D basildi !");
+                
+                int posX = bas.getX();
+                int posY = bas.getY();
+                
+                posX = posX + bas.getWidth();
+                bas.setBounds(posX, posY, bas.getWidth(), bas.getWidth());
+                
+            }
+            
 
         }
 
