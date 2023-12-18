@@ -91,11 +91,12 @@ public class kutu extends JLabel{
         int posX = getX();
         int posY = getY();
         
+        yeniKutu.setBounds(posX, posY, getWidth(), getWidth());
+        
         yeniKutu.KYON = -KYON;
         yeniKutu.YoneGoreHareket();
         yeniKutu.KYON = KYON;
         
-        yeniKutu.setBounds(posX, posY, getWidth(), getWidth());
         
         
         return yeniKutu; //yilanýn her parcasini arraylistte tutacagim artip azalabilsin o yuzden donus tipi var
