@@ -34,5 +34,49 @@ public class kutu extends JLabel{
         
     }
     
+    public void yukari(){
+                int posX = getX(); //bulundugu konumu aliyorum
+                int posY = getY();
+                
+                //w yukari gidecek yani - olacak
+                
+                posY = posY - getWidth();
+                setBounds(posX, posY, getWidth(), getWidth());
+        
+        
+    }
+    public void asagi(){
+                int posX = getX(); //bulundugu konumu aliyorum
+                int posY = getY();
+                
+                //w yukari gidecek yani - olacak
+                
+                posY = posY + getWidth();
+                setBounds(posX, posY, getWidth(), getWidth());
+        
+    }
+    
+    public void sag(){
+             int posX = getX(); //bulundugu konumu aliyorum
+                int posY = getY();
+                
+                //w yukari gidecek yani - olacak
+                
+                posX = posX + getWidth();
+                setBounds(posX, posY, getWidth(), getWidth());
+    }
+    
+    public void sol(){
+                int posX = getX(); //bulundugu konumu aliyorum
+                int posY = getY();
+                
+                //w yukari gidecek yani - olacak
+                
+                posX = posX - getWidth();
+                setBounds(posX, posY, getWidth(), getWidth());
+    
+        
+    }
+    
     
 }
