@@ -54,23 +54,29 @@ public class yilanVeCerceve extends JLabel {
             
             if(e.getKeyCode() == KeyEvent.VK_W){
                 System.out.println("W basildi !");
-                bas.yukari();
+                if(bas.KYON != YON.ASAGI)
+                bas.KYON = YON.YUKARI;
             }
             
             if(e.getKeyCode() == KeyEvent.VK_S){
                 System.out.println("S basildi !");
-                bas.asagi();
+                if(bas.KYON != YON.YUKARI)
+                bas.KYON = YON.ASAGI;
             }
             
             if(e.getKeyCode() == KeyEvent.VK_A){
                 System.out.println("A basildi !");
-                bas.sol();
+                if(bas.KYON != YON.SAG)
+                bas.KYON = YON.SOL;
             }
             
             if(e.getKeyCode() == KeyEvent.VK_D){
                 System.out.println("D basildi !");
-                bas.sag();
-            }
+                if(bas.KYON != YON.SOL)
+                bas.KYON = YON.SAG;
+                    
+               }
+            
             
 
         }
@@ -82,10 +88,11 @@ public class yilanVeCerceve extends JLabel {
     
     public class surekliHareketKontrol implements ActionListener{
 
-        @Override
+        @Override //hep saga gidiyor bunu engellemek icin yon tayini yapacagiz
         public void actionPerformed(ActionEvent e) {
-        bas.sag();
-
+        //bas.sag();
+        
+        bas.YoneGoreHareket();
         }
     }
     
