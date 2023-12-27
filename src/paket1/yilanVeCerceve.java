@@ -10,7 +10,9 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import paket1.YON;
 import paket1.kutu;
@@ -21,6 +23,7 @@ import paket1.yem;
 public class yilanVeCerceve extends JLabel {
     kutu bas = new kutu();
     yem yem = new yem();
+    bomba bomba = new bomba();
     
     Timer timer4 = null;
     ArrayList<kutu> yilanParcalari = new ArrayList<kutu>();
@@ -49,6 +52,7 @@ public class yilanVeCerceve extends JLabel {
         }
         
         add(yem);
+        add(bomba);
         add(bas);
     }
     
@@ -57,6 +61,19 @@ public class yilanVeCerceve extends JLabel {
         kutu yeniKutu = yilanParcalari.get(yilanParcalari.size()-1).kutuOlustur();
         yilanParcalari.add(yeniKutu);
         add(yeniKutu);
+        
+    }
+    
+    public void kuyrukCikar(){//-------------------------------------------------------------------------------->
+        
+        if (!yilanParcalari.isEmpty()) {
+        kutu sonKutu = yilanParcalari.remove(yilanParcalari.size() - 1);
+        remove(sonKutu);
+        repaint();
+    }
+        if(yilanParcalari.size() <= 3){
+            timer4.stop();
+        }
         
     }
     
@@ -136,7 +153,7 @@ public class yilanVeCerceve extends JLabel {
     }
 
     if (basX <= 10 || basX >= 560 || basY <= 10 || basY >= 540) {
-        return true; // Duvarlara çarpma
+        return true; 
     }
 
     if (yem.getX() == basX && yem.getY() == basY) {
@@ -144,6 +161,19 @@ public class yilanVeCerceve extends JLabel {
         yemEkle();
     }
 
+    return false;
+}
+       public boolean carpismaBomba(){//---------------------------------------------------------------------->
+        
+    int basX = bas.getX();
+    int basY = bas.getY();
+
+    if (bomba.getX() == basX && bomba.getY() == basY) {
+        kuyrukCikar();
+        bombaEkle();
+    }
+    
+    
     return false;
 }
 
@@ -159,8 +189,23 @@ public class yilanVeCerceve extends JLabel {
         posX = posX - posX%20;
         posY = posY - posY%20;
         
-        yem.setBounds(posX+20, posY+20, 20, 20);
+        //+20 diyerek yem yukseklik kadar cerceve icinde tutuyorum yoksa cercevede olusuyor
+        yem.setBounds(posX+20, posY+20, 20, 20); 
             
+    }
+    
+    public void bombaEkle(){
+        int width = getWidth()-40-bomba.bombaUzunluk;
+        int height = getHeight()-40-bomba.bombaUzunluk;
+        
+        int posX = Math.abs(rand.nextInt()) % width; 
+        int posY = Math.abs(rand.nextInt()) % height;
+        
+        posX = posX - posX%20;
+        posY = posY - posY%20;
+        
+        bomba.setBounds(posX+20, posY+20, 20, 20); 
+       
     }
     
     public void hepsiniYurut(){
@@ -180,7 +225,7 @@ public class yilanVeCerceve extends JLabel {
         //donguyu ters ceviririz
         bas.YoneGoreHareket();
     }
-    
+//    ekran ekran1 = new ekran();
     public class surekliHareketKontrol implements ActionListener{
 
         @Override //hep saga gidiyor bunu engellemek icin yon tayini yapacagiz
@@ -189,13 +234,54 @@ public class yilanVeCerceve extends JLabel {
         
         //bas.YoneGoreHareket();
         hepsiniYurut();
-        if(carpismaVarMi()){
-            System.out.println("carpisma oldu !");
+        if(carpismaVarMi()|| carpismaBomba()){
+            //System.out.println("carpisma oldu !");
+            
             timer4.stop();
-        }
+            secim();
         
         }
         
     }
     
+    public void sifirla() {
+   // bas.setBounds(200, 200, 20, 20);
+    bas.KYON = YON.SAG;
+   int[] randomKonumlar = {100, 200, 300, 400, 500};
+
+        int randomIndex = rand.nextInt(randomKonumlar.length);
+        int rastgele = randomKonumlar[randomIndex];
+        
+        bas.setBounds(rastgele, rastgele, 20, 20);
+   
+    for (kutu parca : yilanParcalari) {
+        remove(parca);
+    }
+    
+    yilanParcalari.clear();
+
+    yilanParcalari.add(bas);
+    for (int i = 0; i < 5; i++) {
+        kuyrukOlustur();
+    }
+
+     repaint();
 }
+        
+       public void secim(){
+           
+           int secim = JOptionPane.showConfirmDialog(yilanVeCerceve.this, "K"
+                       + "aybettin! Tekrar oynamak ister misin ?","Tekrar "
+                    + "Oyna ?", JOptionPane.YES_NO_OPTION);
+            
+            if(secim == JOptionPane.YES_OPTION){
+                sifirla();
+                timer4.start();
+            }
+            else
+            System.exit(0);
+        }
+       }
+        
+    }
+    
