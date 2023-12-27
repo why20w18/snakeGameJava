@@ -1,10 +1,14 @@
+package paket1;
 
+
+import paket1.YON;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
 import javax.swing.JLabel;
 
 
@@ -13,10 +17,17 @@ public class kutu extends JLabel{
     
     private final int kutuYukselik = 20;
     public int KYON = YON.SAG; //oto baslangic sag yapmistik
+    Random rand = new Random();
+    int rastgele = 0;
+    
     
     public kutu(){
+        int[] randomKonumlar = {100, 200, 300, 400, 500};
+
+        int randomIndex = rand.nextInt(randomKonumlar.length);
+        int rastgele = randomKonumlar[randomIndex];
         
-        setBounds(100, 100, kutuYukselik, kutuYukselik);
+        setBounds(rastgele, rastgele, kutuYukselik, kutuYukselik);
     }
     
     @Override
@@ -84,7 +95,7 @@ public class kutu extends JLabel{
     }
     public kutu kutuOlustur(){
         
-        //buradaki algoritmik soru : kutuyu nereye olusturacagiz ?
+        //buradaki sorun : kutuyu nereye olusturacagiz ?
         //cevap: yilanBas'in arkasina olusmali , o zaman yilanBas nerede ?
         kutu yeniKutu = new kutu();
         
@@ -99,7 +110,9 @@ public class kutu extends JLabel{
         
         
         
-        return yeniKutu; //yilanýn her parcasini arraylistte tutacagim artip azalabilsin o yuzden donus tipi var
+        return yeniKutu; 
     }
+    
+    
     
 }

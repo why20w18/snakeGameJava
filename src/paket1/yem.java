@@ -1,4 +1,7 @@
+package paket1;
 
+
+import paket1.YON;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -30,7 +33,7 @@ public class yem extends JLabel{
         g2.setStroke(new BasicStroke(4));
         
         g2.draw(yem);
-        g2.setColor(Color.red);
+        g2.setColor(Color.blue);
         g2.fill(yem);
         
     }
